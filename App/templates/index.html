@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Генератор чисел</title>
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/front-page.css') }}">
+    <script src="{{ url_for('static',filename='js/warn.js') }}"></script>
+</head>
+<body>
+<div class="container">
+      <div class="greet">
+        <h1 class="greetTitle">Это генератор случайных чисел</h1>
+
+        <div class="greetText">
+          <p>Выберите диапазон от 0 до 20</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <form action="/" method="post" onsubmit="return warning()">
+          <select id="first_id" class="selector" name="first">
+            <option selected value="0">0</option>
+            {% for i in range(21) %}
+            <option value="{{i}}">{{i}}</option>
+            {% endfor %}
+          </select>
+            <select id="second_id" class="selector" name="second">
+            {% for n in range(20) %}
+            <option value="{{n}}">{{n}}</option>
+            {% endfor %}
+            <option selected value="20">20</option>
+          </select>
+          <button class="btn" type="submit">Выбрать</button>
+        </form>
+      </div>
+    {% if number > -1 %}
+    <img src="{{ url_for('static', filename='images/' ~ number ~ '.jpg') }}" width=380 height=380>
+    {% endif %}
+</div>
+</body>
+</html>
